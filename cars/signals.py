@@ -9,6 +9,10 @@ from django.db.models import Sum
 
 def car_invetory_update():
     cars_count = Car.objects.all().count()
+
+    if cars_count == 0:
+        return
+
     cars_value = Car.objects.aggregate(
         total_value=Sum('value')
     )['total_value']
