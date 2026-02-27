@@ -1,10 +1,12 @@
 from django.db.models.signals import (
     post_save,
-    post_delete
+    post_delete,
+    pre_save
 )
 from django.dispatch import receiver
 from cars.models import Car, CarInvetory
 from django.db.models import Sum
+from openai_api.client import get_car_ai_bio
 
 
 def car_invetory_update():
@@ -21,6 +23,16 @@ def car_invetory_update():
         cars_count=cars_count,
         cars_value=cars_value
     )
+
+
+@receiver(pre_save, sender=Car)
+def car_pre_save(sender, instance, **kwargs):
+    if not instance.bio:
+        instance.bio = get_car_ai_bio(
+            instance.model,
+            instance.brand,
+            instance.model_year
+        )
 
 
 @receiver(post_save, sender=Car)
