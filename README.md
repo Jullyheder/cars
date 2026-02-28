@@ -18,12 +18,26 @@ O projeto tem caráter **educacional**, servindo como exercício de aprendizado 
 - `cars/` → Lógica e funcionalidades relacionadas aos carros
 - `media/cars/` → Arquivos de mídia (imagens de carros)
 - `manage.py` → Script de gerenciamento do Django
-
++
 ## 🚀 Como executar
 1. Clone este repositório:
    ```bash
    git clone https://github.com/Jullyheder/cars.git
    ```
+   ## ⚙️ Configuração do ambiente
+   O projeto utiliza variáveis de ambiente para armazenar informações sensíveis (como chaves secretas e configurações).  
+   Para configurar corretamente:
+   
+   1. Faça uma cópia do arquivo `.env-example`:
+      ```bash
+      cp .env-example .env
+      ```
+   2. Edite o arquivo .env e adicione suas respectivas chaves e valores, por exemplo:
+      ```bash
+      SECRET_KEY=sua_chave_secreta
+      DEBUG=True
+      DATABASE_URL=sqlite:///db.sqlite3
+      ```
 2. Instale as dependências:
    ```bash
    pip install -r requirements.txt
